@@ -19,10 +19,10 @@ class GPXWriter : IWriter {
         writer.setIndentStep("  ")
         writer.document {
             element("gpx") {
-                if (!gpxFile.version.isNullOrBlank()) {
+                if (gpxFile.version.isNotBlank()) {
                     attribute("version", gpxFile.version)
                 }
-                if (!gpxFile.creator.isNullOrBlank()) {
+                if (gpxFile.creator.isNotBlank()) {
                     attribute("creator", gpxFile.creator)
                 }
                 if (gpxFile.version == "1.0") {
@@ -31,14 +31,14 @@ class GPXWriter : IWriter {
                 if (gpxFile.version == "1.1") {
                     attribute("xmlns", "http://www.topografix.com/GPX/1/1")
                 }
-                if (!gpxFile.name.isNullOrBlank()) {
+                if (gpxFile.name.isNotBlank()) {
                     element("metadata") {
                         element("name", gpxFile.name)
                     }
                 }
                 gpxFile.tracks.forEach { track ->
                     element("trk") {
-                        if (!track.name.isNullOrBlank()) {
+                        if (track.name.isNotBlank()) {
                             element("name", track.name)
                         }
                         track.segments.forEach { segment ->
@@ -66,7 +66,7 @@ class GPXWriter : IWriter {
      * @return The GPX as a GPX XML string
      */
     override fun toString(gpxFile: GPXFile): String {
-        var stream = ByteArrayOutputStream()
+        val stream = ByteArrayOutputStream()
         toStream(gpxFile, stream)
         return stream.toString("UTF-8")
     }

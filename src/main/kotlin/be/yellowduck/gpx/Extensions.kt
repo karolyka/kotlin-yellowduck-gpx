@@ -5,8 +5,8 @@ import org.w3c.dom.NodeList
 import javax.xml.stream.XMLStreamWriter
 
 internal fun NodeList.items() : List<Node> {
-    var items = mutableListOf<Node>()
-    for (i in 0..this.length - 1) {
+    val items = mutableListOf<Node>()
+    for (i in 0..<this.length) {
         items.add(item(i))
     }
     return items

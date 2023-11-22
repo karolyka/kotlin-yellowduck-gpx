@@ -101,7 +101,7 @@ class GPX {
             val node = doc.firstChild
 
             val creator = node.stringAttribute("creator")
-            if (!creator.isNullOrBlank()) {
+            if (creator.isNotBlank()) {
                 return creator
             }
 
@@ -116,8 +116,8 @@ class GPX {
         }
 
         private fun parseTrack(node: Node): Track {
-            var trackName = node.firstChildByName("name")?.textContent.orEmpty()
-            var track = Track(trackName)
+            val trackName = node.firstChildByName("name")?.textContent.orEmpty()
+            val track = Track(trackName)
             for (child in node.childrenByName("trkseg")) {
                 val segment = parseSegment(child)
                 track.segments.add(segment)
@@ -126,7 +126,7 @@ class GPX {
         }
 
         private fun parseSegment(node: Node): Segment {
-            var segment = Segment()
+            val segment = Segment()
             for (child in node.childrenByName("trkpt")) {
                 val trackPoint = parseTrackPoint(child)
                 segment.points.add(trackPoint)
@@ -136,8 +136,8 @@ class GPX {
 
         private fun parseTrackPoint(node: Node): TrackPoint {
 
-            var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-            var parsedDate = LocalDateTime.parse(node.firstChildByName("time")?.textContent ?: "", formatter)
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            val parsedDate = LocalDateTime.parse(node.firstChildByName("time")?.textContent ?: "", formatter)
 
             return TrackPoint(
                 lat = node.doubleAttribute("lat"),

@@ -34,7 +34,7 @@ class TCXWriter : IWriter {
                 element("Courses") {
                     gpxFile.tracks.forEach { track ->
                         element("Course") {
-                            if (!track.name.isNullOrBlank()) {
+                            if (track.name.isNotBlank()) {
                                 element("name", track.name)
                             }
                             element("Lap") {
@@ -71,7 +71,7 @@ class TCXWriter : IWriter {
      * @return The GPX as a TCX XML string
      */
     override fun toString(gpxFile: GPXFile): String {
-        var stream = ByteArrayOutputStream()
+        val stream = ByteArrayOutputStream()
         toStream(gpxFile, stream)
         return stream.toString("UTF-8")
     }

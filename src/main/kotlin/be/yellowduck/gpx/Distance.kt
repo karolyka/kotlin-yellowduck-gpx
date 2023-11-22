@@ -58,7 +58,7 @@ data class Distance(
     val formattedMiles: String = "${formatter.format(miles)} mi"
 
     override fun toString(): String {
-        return "${meters}"
+        return "$meters"
     }
 
     override fun equals(other: Any?): Boolean {

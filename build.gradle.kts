@@ -1,5 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
+    kotlin("jvm") version "1.9.20"
+    kotlin("plugin.serialization") version "1.9.20"
+    id("org.jetbrains.dokka") version "1.9.10"
+    `maven-publish`
+    `java-library`
+}
+
 group = "be.yellowduck"
 version = "1.0.10"
 
@@ -7,22 +15,14 @@ val myArtifactId: String = rootProject.name
 val myArtifactGroup: String = project.group.toString()
 val myArtifactVersion: String = project.version.toString()
 
-val myGithubUsername = "pieterclaerhout"
+val myGithubUsername = "karolyka"
 val myGithubDescription = "A GPX library written in Kotlin"
 val myGithubHttpUrl = "https://github.com/${myGithubUsername}/kotlin-yellowduck-gpx"
 val myGithubIssueTrackerUrl = "https://github.com/${myGithubUsername}/kotlin-yellowduck-gpx/issues"
 val myLicense = "MIT"
-val myLicenseUrl = "https://raw.githubusercontent.com/pieterclaerhout/kotlin-yellowduck-gpx/main/LICENSE"
+val myLicenseUrl = "https://raw.githubusercontent.com/${myGithubUsername}/kotlin-yellowduck-gpx/main/LICENSE"
 
 val myDeveloperName = "Pieter Claerhout"
-
-plugins {
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.serialization") version "1.5.0"
-    id("org.jetbrains.dokka") version "1.4.32"
-    `maven-publish`
-    `java-library`
-}
 
 repositories {
     mavenCentral()
@@ -30,16 +30,17 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.12.3")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.12.3")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
-    implementation("org.glassfish.jaxb:txw2:2.2.11")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.16.0")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.16.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
+    implementation("org.glassfish.jaxb:txw2:4.0.4")
+//    implementation("org.glassfish.jaxb:txw2:2.2.11") // 4.0.4
 
-    testImplementation("org.assertj:assertj-core:3.18.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 }
 
 tasks.withType<KotlinCompile> {

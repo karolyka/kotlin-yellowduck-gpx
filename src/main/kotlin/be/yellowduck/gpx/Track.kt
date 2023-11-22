@@ -33,7 +33,7 @@ data class Track(
         segments.forEach {
             coords.addAll(it.points)
         }
-        return Polyline.encode(coords);
+        return Polyline.encode(coords)
     }
 
 }
