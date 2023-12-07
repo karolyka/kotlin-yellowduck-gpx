@@ -1,8 +1,8 @@
-repo_name: pieterclaerhout/kotlin-yellowduck-gpx
-report_id: 4e1806f00481bf722d1db2504fdc75da
+repo_name: karolyka/kotlin-yellowduck-gpx
+report_id: f99b5e04aa66ba554573c21773d48019
 repo_type: Public
-timestamp: '2023-11-09T11:09:30+00:00'
-requested_by: pieterclaerhout
+timestamp: '2023-11-22T09:26:11+00:00'
+requested_by: karolyka
 provider: github
 branch: main
 detected_tools_count: 4
